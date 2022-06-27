@@ -55,7 +55,7 @@ pipeline {
         always { 
             junit(
              allowEmptyResults: true,
-             testResults: '$WORKSPACE/target/surefire-reports/*.xml'
+             testResults: 'target/surefire-reports/**/*.xml'
            )
         }
     }
