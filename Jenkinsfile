@@ -53,10 +53,9 @@ pipeline {
     }
     post { 
         always { 
-            junit(
-             allowEmptyResults: true,
-             testResults: 'target/surefire-reports/**/*.xml'
-           )
+            junit '**/target/surefire-reports/TEST-*.xml'
+            archive 'target/*.jar'
+
         }
     }
 }
