@@ -53,7 +53,10 @@ pipeline {
     }
     post { 
         always { 
-            echo 'always run this step'
+            junit(
+             allowEmptyResults: true,
+             testResults: '$WORKSPACE/target/surefire-reports/*.xml'
+           )
         }
     }
 }
