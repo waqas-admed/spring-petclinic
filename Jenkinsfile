@@ -6,7 +6,7 @@ pipeline {
     tools {
         maven "maven3"
         jdk "java11"
-        dockerTool 'docker'
+
 
     }
     stages {
@@ -22,8 +22,8 @@ pipeline {
 
         stage('Compile') {
             steps {
-                echo "PATH = ${dockerTool}/bin:${PATH}"
                 sh 'mvn -DskipTests clean package'
+                echo "sleep 5"
                 sh '$WORKSPACE/mvnw spring-boot:build-image'
             }
         }
