@@ -42,6 +42,7 @@ pipeline {
 
         stage('Creating-container') {
             steps {
+                echo "creating container"
                 echo "Running test-cases in container..."
                 sh '$WORKSPACE/mvnw spring-boot:build-image'
             }
