@@ -22,14 +22,25 @@ pipeline {
 
         stage('Compile') {
             steps {
-                sh 'mvn -DskipTests clean package'
+                sh '$WORKSPACE/mvnw -DskipTests clean package'
                 echo "sleep 5"
-                sh '$WORKSPACE/mvnw spring-boot:build-image'
+            }
+        }
+        
+        
+        stage('Test-cases') {
+            steps {
+                sh 'mvn test'
+                echo "sleep 5"
+                sh '$WORKSPACE/mvnw test'
             }
         }
 
+        
+        
+        
 
-        stage('Test-cases') {
+        stage('Creating-container') {
             steps {
                 echo "Running test-cases in container..."
                 sh '$WORKSPACE/mvnw spring-boot:build-image'
@@ -41,7 +52,7 @@ pipeline {
     }
     post { 
         always { 
-            echo 'I will always say Hello again!'
+            echo 'always run this step'
         }
     }
 }
