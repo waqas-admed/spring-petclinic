@@ -3,9 +3,7 @@ pipeline {
     triggers {
       githubPush()
     }
-    tools {
-        
-    }
+
     stages {
         stage('Config') {
             steps {
